@@ -25,10 +25,11 @@ else:
 # Inputs matching final selected features
 price = st.slider("Price", 0, 200, 50)
 discount = st.slider("Discount (%)", 0, 50, 10)
-weather = st.selectbox("Weather Condition", ['Snowy', 'Cloudy', 'Sunny', 'Rainy'])  # adjust based on dataset
 promotion = st.selectbox("Promotion Active?", [0, 1])
 competitor_price = st.slider("Competitor Pricing", 0, 200, 50)
+units_sold = st.slider("Units Sold", 0, 500, 100)
 season = st.selectbox("Seasonality", ['Winter', 'Spring', 'Summer', 'Autumn'])  # adjust based on dataset
+weather = st.selectbox("Weather Condition", ['Snowy', 'Cloudy', 'Sunny', 'Rainy'])  # adjust based on dataset
 
 # One-hot encoding (must match model's training)
 def encode_input(weather, season):
