@@ -12,7 +12,7 @@ st.write("Enter product and promotion details to estimate expected demand based 
 model_path = "xgb_model.pkl"
 
 if not os.path.exists(model_path):
-    st.error("❌ Model file not found. Please ensure 'xgb_selected6_model.pkl' is present in the app directory.")
+    st.error("❌ Model file not found. Please ensure 'xgb_model.pkl' is present in the app directory.")
     st.stop()
 else:
     try:
