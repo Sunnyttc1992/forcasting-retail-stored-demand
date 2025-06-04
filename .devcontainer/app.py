@@ -2,11 +2,18 @@ import streamlit as st
 import joblib
 import numpy as np
 
-# Load model
-model = joblib.load("xgb_demand_model.pkl")
+st.set_page_config(page_title="Retail Demand Forecasting", layout="centered")
+st.title("📦 Retail Demand Prediction")
 
-st.title("📦 Demand Prediction App")
-st.write("Enter product details to predict demand")
+# Model load with error feedback
+if not os.path.exists("xgb_demand_model.pkl"):
+    st.error("❌ Model file not found. Please make sure 'xgb_demand_model.pkl' is in the root directory.")
+else:
+    try:
+        model = joblib.load("xgb_demand_model.pkl")
+        st.success("✅ Model loaded successfully!")
+    except Exception as e:
+        st.error(f"❌ Error loading model: {e}")
 
 # Sample inputs (you can customize based on your features)
 price = st.slider("Price", 0, 200, 50)
