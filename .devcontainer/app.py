@@ -33,29 +33,26 @@ weather = st.selectbox("Weather Condition", ['Snowy', 'Cloudy', 'Sunny', 'Rainy'
 
 # One-hot encoding (must match model's training)
 def encode_input(weather, season):
-    # One-hot for Weather Condition (drop_first=True assumed: 'Cloudy' is dropped)
+    # Weather dummies (drop_first=True → 'Cloudy' dropped)
     weather_map = {
         'Snowy': [1, 0, 0],
         'Sunny': [0, 1, 0],
         'Rainy': [0, 0, 1],
-        'Cloudy': [0, 0, 0]  # base case
+        'Cloudy': [0, 0, 0]  # baseline
     }
 
-    # One-hot for Seasonality (drop_first=True assumed: 'Autumn' is dropped)
+    # Seasonality dummies (drop_first=True → 'Autumn' dropped)
     season_map = {
         'Winter': [1, 0, 0],
         'Spring': [0, 1, 0],
         'Summer': [0, 0, 1],
-        'Autumn': [0, 0, 0]  # base case
+        'Autumn': [0, 0, 0]  # baseline
     }
 
     return weather_map.get(weather, [0, 0, 0]) + season_map.get(season, [0, 0, 0])
 
-# Assemble input
-encoded_features = encode_input(weather, season)
-
-# Add any additional numeric input here if used in training!
-input_data = np.array([[price, discount, promotion, competitor_price] + encoded_features])
+encoded = encode_input(weather, season)
+input_data = np.array([[price, discount, promotion, competitor_price, units_sold] + encoded])
 
 # Predict
 if st.button("Predict Demand"):
