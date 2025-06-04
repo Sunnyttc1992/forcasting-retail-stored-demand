@@ -9,7 +9,7 @@ st.title("📦 Retail Demand Prediction")
 st.write("Enter product and promotion details to estimate expected demand based on selected features.")
 
 # Load model
-model_path = "xgb_selected6_model.pkl"
+model_path = "xgb_model.pkl"
 
 if not os.path.exists(model_path):
     st.error("❌ Model file not found. Please ensure 'xgb_selected6_model.pkl' is present in the app directory.")
